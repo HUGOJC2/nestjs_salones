@@ -8,7 +8,7 @@ export class Salon{
     id: number;
 
     @Column()
-    numero: number;
+    nombre: string;
 
     @Column()
     estado: string;

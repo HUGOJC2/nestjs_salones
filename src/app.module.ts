@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SalonesModule } from './salones/salones.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     database: process.env.DATABASE_BASE,
     entities: [__dirname + '/**/*.entity{.ts,.js}', __dirname + '/**/**/*.entity{.ts,.js}' ],
     synchronize: true,
-  }),],
+  }),
+  SalonesModule],
   controllers: [AppController],
   providers: [AppService],
 })

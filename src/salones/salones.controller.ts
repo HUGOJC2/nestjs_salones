@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { SalonesService } from './salones.service';
 import { Salon } from './entities/salon.entity';
 
@@ -10,5 +10,11 @@ export class SalonesController {
     @Get(':idEdificio/:numPiso')
     async obtenerSalonesPorEdificioYPiso(@Param('idEdificio') idEdificio: number, @Param('numPiso') numPiso: number): Promise<Salon[]> {
         return this.salonService.obtenerSalonesPorEdificioYPiso(idEdificio, numPiso);
+    }
+
+    @Put(':id')
+    async actualizarEstadoSalon(@Param('id') id: number, @Body('estado') nuevoEstado: string) {
+        const salon = await this.salonService.actualizarEstadoSalon(id, nuevoEstado);
+        return { mensaje: 'Estado actualizado correctamente', salon };
     }
 }

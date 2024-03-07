@@ -39,4 +39,20 @@ export class SalonesService {
         });
         return salones;
     }
+
+    async actualizarEstadoSalon(id: number, nuevoEstado: string): Promise<Salon> {
+        const salon = await this.salonRepository.findOne({
+             where: {
+                id: id 
+            } 
+        });
+        if (!salon) {
+          // Manejar el caso cuando no se encuentra el salón
+          throw new Error(`No se encontró el salón con id ${id}`);
+        }
+    
+        salon.estado = nuevoEstado;
+        const salonActualizado = await this.salonRepository.save(salon);
+        return salonActualizado;
+      }
 }
