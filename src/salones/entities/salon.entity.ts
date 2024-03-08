@@ -13,6 +13,9 @@ export class Salon{
     @Column()
     estado: string;
 
+    @Column()
+    laboratorio: string;
+
     @ManyToOne(()=> Piso, (piso) => piso.salones)
     piso: Piso
 }
