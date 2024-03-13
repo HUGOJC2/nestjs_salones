@@ -17,4 +17,14 @@ export class SalonesController {
         const salon = await this.salonService.actualizarEstadoSalon(id, nuevoEstado);
         return { mensaje: 'Estado actualizado correctamente', salon };
     }
+
+    @Get('/obtener-conteo-estados')
+    obtenerConteoEstados(): Promise<{ OFF: number; ON: number }> {
+        return this.salonService.obtenerConteoEstados();
+    }
+
+    @Get('/libres')
+    async obtenerSalonesOFF() {
+        return this.salonService.obtenerSalonesConEstadoOFF();
+    }
 }
